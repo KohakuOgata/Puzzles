@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デジピック — Puzzles</title>
+<meta name="description" content="鍵ピースを回転させて盤面にはめ込み、回路を完成させるロックピッキングパズル。問題はランダム生成で、必ず解けます。">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🔓</text></svg>">
+</head>
+<body>
+<div class="wrap">
+  <header class="site-header">
+    <h1 class="site-title">デジピック</h1>
+    <a class="back-link" href="../../">← パズル一覧</a>
+  </header>
+
+  <p class="lede">
+    『Starfield』のデジピック（Digipick）を参考にしたロックピッキングパズル。
+    鍵ピースを回転させて盤面にぴったりはめ込み、すべてのマスを埋めればロック解除です。
+  </p>
+
+  <div class="controls">
+    <div class="seg" id="level-seg" role="group" aria-label="難易度"></div>
+    <button class="btn primary" id="new-game" type="button">新しい問題</button>
+    <button class="btn" id="give-up" type="button">この試行をやめる</button>
+    <button class="btn" id="hint" type="button">ヒント</button>
+  </div>
+
+  <div class="stats">
+    <div>
+      <span class="stat-label">残りトライ</span>
+      <span class="stat-value" id="tries">—</span>
+    </div>
+    <div>
+      <span class="stat-label">残り鍵</span>
+      <span class="stat-value" id="keys-left">—</span>
+    </div>
+    <div>
+      <span class="stat-label">時間</span>
+      <span class="stat-value" id="time">00:00</span>
+    </div>
+    <div>
+      <span class="stat-label">最少トライ記録</span>
+      <span class="stat-value" id="best">—</span>
+    </div>
+  </div>
+
+  <p class="message" id="message" role="status" aria-live="polite"></p>
+
+  <div class="dp-layout">
+    <div class="dp-board-wrap">
+      <div class="board dp-board" id="board" role="group" aria-label="ロック盤面"></div>
+    </div>
+    <div class="dp-tray" id="tray" role="group" aria-label="鍵ピース"></div>
+  </div>
+
+  <section class="rules">
+    <h2>遊び方</h2>
+    <ul>
+      <li>下の「鍵」を 1 つクリックして選び、盤面のマスをクリックすると、そこにはめ込みます。ピース右上の <strong>⟳</strong> で回転できます。</li>
+      <li>盤面の金色の枠が「はめ込むべきマス」です。壁（何もないマス）や他の鍵と重なる置き方はできません。</li>
+      <li>いちど盤面にはめた鍵は抜けません。すべてのマスが埋まればロック解除でクリアです。</li>
+      <li>残りの鍵で盤面を埋めきれなくなると「詰み」になります。「この試行をやめる」でトライを 1 つ消費してやり直せます。トライがなくなるとロックが壊れ、その問題は失敗です。</li>
+      <li>問題は鍵ピースを隙間なく敷き詰めて作ってからシャッフルしているので、必ず解けます。「ヒント」で次に置くべき鍵と場所が分かります。</li>
+    </ul>
+  </section>
+
+  <footer class="site-footer">
+    <a href="../../">← パズル一覧に戻る</a>
+  </footer>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

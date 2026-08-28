@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | [ライツアウト](puzzles/lights-out/) | すべてのライトを消す。押したマスと上下左右が同時に反転する。3×3〜7×7、ヒント・最少手数記録つき。 | 遊べる |
 | [水そそぎパズル](puzzles/water-sort/) | 試験管の液体を移し替えて同じ色を揃える。同じ色の上か空の試験管にだけ注げる。難易度 4 段階、ヒント・1手戻すつき。 | 遊べる |
+| [デジピック](puzzles/digipick/) | Starfield 風のロックピッキング。鍵ピースを回転させて盤面にはめ込み、すべてのマスを埋める。難易度 4 段階、トライ制・ヒントつき。 | 遊べる |
 
 ## ローカルで動かす
 
@@ -35,7 +36,11 @@ python -m http.server 4173
     │   ├── index.html
     │   ├── game.js
     │   └── style.css
-    └── water-sort/
+    ├── water-sort/
+    │   ├── index.html
+    │   ├── game.js
+    │   └── style.css
+    └── digipick/
         ├── index.html
         ├── game.js
         └── style.css
