@@ -1,0 +1,162 @@
+/* 水そそぎパズル専用スタイル */
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 18px 16px;
+  padding: 28px 16px 20px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  touch-action: manipulation;
+}
+
+/* --- 試験管 --------------------------------------------------------------- */
+
+.tube {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--text-dim);
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.15s ease;
+}
+
+.tube-glass {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 46px;
+  height: 152px;
+  border: 2px solid var(--border);
+  border-top-width: 1px;
+  border-radius: 6px 6px 22px 22px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tube-label {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tube:hover .tube-glass { border-color: #46516b; }
+.tube:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; border-radius: 8px; }
+
+.tube.selected { transform: translateY(-14px); }
+.tube.selected .tube-glass {
+  border-color: var(--accent);
+  box-shadow: 0 0 14px rgba(255, 211, 77, 0.35), inset 0 0 12px rgba(0, 0, 0, 0.35);
+}
+.tube.selected .tube-label { color: var(--accent); }
+
+.tube.done .tube-glass { border-color: var(--ok); }
+.tube.done .tube-label { color: var(--ok); }
+
+/* --- 液体 ----------------------------------------------------------------- */
+
+.liquid {
+  display: block;
+  width: 100%;
+  height: 25%; /* 試験管 1 本ぶん = 4 段 */
+  position: relative;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* 記号表示（色が見分けにくいときの補助） */
+.liquid::after {
+  content: attr(data-symbol);
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.board.symbols .liquid::after { display: flex; }
+
+/* 注いだ直後の段 */
+.liquid.poured { animation: pour-in 0.22s ease-out; }
+
+@keyframes pour-in {
+  from { transform: translateY(-160%); opacity: 0.4; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- ヒント --------------------------------------------------------------- */
+
+/* 注ぐ元は実線、注ぎ先は破線の輪で囲む（液体に隠れないよう外側に描く） */
+.tube.hint-from .tube-glass,
+.tube.hint-to .tube-glass {
+  outline: 2px solid var(--ok);
+  outline-offset: 3px;
+  border-radius: 8px 8px 22px 22px;
+  animation: hint-pulse 1.1s ease-in-out infinite;
+}
+
+.tube.hint-to .tube-glass { outline-style: dashed; }
+
+.tube.hint-from .tube-label,
+.tube.hint-to .tube-label { color: var(--ok); }
+
+@keyframes hint-pulse {
+  0%, 100% { outline-color: var(--ok); }
+  50% { outline-color: rgba(90, 212, 138, 0.25); }
+}
+
+/* --- クリア時の演出 ------------------------------------------------------- */
+
+.board.cleared .tube { animation: cleared-bounce 0.55s ease; }
+.board.cleared .tube:nth-child(2n) { animation-delay: 0.06s; }
+.board.cleared .tube:nth-child(3n) { animation-delay: 0.12s; }
+
+@keyframes cleared-bounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-12px); }
+}
+
+/* --- 説明 ----------------------------------------------------------------- */
+
+.rules {
+  margin-top: 32px;
+  padding: 16px 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.rules h2 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.rules ul { margin: 0; padding-left: 18px; }
+.rules strong { color: var(--text); }
+
+@media (max-width: 480px) {
+  .board { gap: 14px 10px; padding: 24px 10px 16px; }
+  .tube-glass { width: 38px; height: 126px; }
+}
+
+/* 「記号を表示」がオンのとき、押されているのが分かるようにする */
+.btn[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--accent);
+}

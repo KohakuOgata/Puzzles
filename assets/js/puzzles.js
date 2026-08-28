@@ -18,6 +18,14 @@ const PUZZLES = [
     tags: ["論理", "1人用", "自動生成"],
     status: "ready",
   },
+  {
+    id: "water-sort",
+    name: "水そそぎパズル",
+    icon: "🧪",
+    desc: "試験管の液体を移し替えて、同じ色を 1 本にまとめる。",
+    tags: ["並べ替え", "1人用", "自動生成"],
+    status: "ready",
+  },
 ];
 
 /** 一覧を #puzzle-list に描画する。 */
