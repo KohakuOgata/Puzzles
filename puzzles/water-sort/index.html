@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>水そそぎパズル — Puzzles</title>
+<meta name="description" content="試験管の液体を移し替えて同じ色を揃えるパズル。問題はランダム生成で、必ず解けます。">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🧪</text></svg>">
+</head>
+<body>
+<div class="wrap">
+  <header class="site-header">
+    <h1 class="site-title">水そそぎパズル</h1>
+    <a class="back-link" href="../../">← パズル一覧</a>
+  </header>
+
+  <p class="lede">試験管を 2 本選んで液体を注ぎ、同じ色だけを 1 本にまとめればクリアです。</p>
+
+  <div class="controls">
+    <div class="seg" id="level-seg" role="group" aria-label="難易度"></div>
+    <button class="btn primary" id="new-game" type="button">新しい問題</button>
+    <button class="btn" id="restart" type="button">やり直す</button>
+    <button class="btn" id="undo" type="button">1手戻す</button>
+    <button class="btn" id="hint" type="button">ヒント</button>
+    <button class="btn" id="symbols" type="button" aria-pressed="false">記号を表示</button>
+  </div>
+
+  <div class="stats">
+    <div>
+      <span class="stat-label">手数</span>
+      <span class="stat-value" id="moves">0</span>
+    </div>
+    <div>
+      <span class="stat-label">時間</span>
+      <span class="stat-value" id="time">00:00</span>
+    </div>
+    <div>
+      <span class="stat-label">最少記録</span>
+      <span class="stat-value" id="best">—</span>
+    </div>
+  </div>
+
+  <p class="message" id="message" role="status" aria-live="polite"></p>
+
+  <div class="board" id="board" role="group" aria-label="試験管"></div>
+
+  <section class="rules">
+    <h2>遊び方</h2>
+    <ul>
+      <li>試験管をクリック（タップ）すると持ち上がります。続けて別の試験管を選ぶと、そこへ注ぎます。</li>
+      <li>注げるのは<strong>同じ色の上</strong>か<strong>空の試験管</strong>だけ。一番上にある同じ色のかたまりが、入るぶんだけまとめて移ります。</li>
+      <li>すべての試験管が「空」か「1 色だけで満杯」になればクリアです。</li>
+      <li>問題はランダムに配ったあとソルバーで解けることを確かめているので、必ず解けます。</li>
+      <li>詰まったら「1手戻す」で戻せます。「ヒント」は残り手数と次の 1 手を教えます。</li>
+      <li>色が見分けにくいときは「記号を表示」を使ってください。最少記録は難易度ごとにブラウザ内へ保存されます。</li>
+    </ul>
+  </section>
+
+  <footer class="site-footer">
+    <a href="../../">← パズル一覧に戻る</a>
+  </footer>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
