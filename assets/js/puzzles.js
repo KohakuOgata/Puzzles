@@ -61,15 +61,4 @@ function renderPuzzleList(container) {
     `;
     container.appendChild(card);
   }
-
-  // 「これから増えます」の空きスロット
-  const placeholder = document.createElement("div");
-  placeholder.className = "card soon";
-  placeholder.innerHTML = `
-    <div class="card-thumb">➕</div>
-    <h2 class="card-title">準備中</h2>
-    <p class="card-desc">新しいパズルを追加予定。</p>
-    <div class="tags"><span class="tag">coming soon</span></div>
-  `;
-  container.appendChild(placeholder);
 }
