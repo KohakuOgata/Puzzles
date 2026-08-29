@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>けいさんチェイン — Puzzles</title>
+<meta name="description" content="スタートの数にパーツの四則演算を順番に適用して、ゴールの数にたどり着くパズル。問題はランダム生成で、必ず解けます。">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🧮</text></svg>">
+</head>
+<body>
+<div class="wrap">
+  <header class="site-header">
+    <h1 class="site-title">けいさんチェイン</h1>
+    <a class="back-link" href="../../">← パズル一覧</a>
+  </header>
+
+  <p class="lede">パーツをすべて使って、スタートの数からゴールの数へたどり着く順番を見つけよう。</p>
+
+  <div class="controls">
+    <div class="seg" id="count-seg" role="group" aria-label="パーツ数"></div>
+    <button class="btn primary" id="new-game" type="button">新しい問題</button>
+    <button class="btn" id="restart" type="button">やり直す</button>
+    <button class="btn" id="undo" type="button">元に戻す</button>
+    <button class="btn" id="hint" type="button">ヒント</button>
+  </div>
+
+  <div class="stats">
+    <div>
+      <span class="stat-label">手数</span>
+      <span class="stat-value" id="moves">0</span>
+    </div>
+    <div>
+      <span class="stat-label">時間</span>
+      <span class="stat-value" id="time">00:00</span>
+    </div>
+    <div>
+      <span class="stat-label">最少記録</span>
+      <span class="stat-value" id="best">—</span>
+    </div>
+  </div>
+
+  <p class="message" id="message" role="status" aria-live="polite"></p>
+
+  <div class="target-row">
+    <div class="value-box">
+      <span class="value-label">スタート</span>
+      <span class="value-num" id="start-num">—</span>
+    </div>
+    <div class="target-arrow" aria-hidden="true">→</div>
+    <div class="value-box current">
+      <span class="value-label">現在</span>
+      <span class="value-num" id="current-num">—</span>
+    </div>
+    <div class="target-arrow" aria-hidden="true">→</div>
+    <div class="value-box goal">
+      <span class="value-label">ゴール</span>
+      <span class="value-num" id="goal-num">—</span>
+    </div>
+  </div>
+
+  <div class="chain" id="chain" role="group" aria-label="使った順番（クリックした場所から後ろをまとめて取り消し）"></div>
+
+  <div class="pool" id="pool" role="group" aria-label="残りのパーツ"></div>
+
+  <section class="rules">
+    <h2>遊び方</h2>
+    <ul>
+      <li>下にある「パーツ」（記号と数字の組）をクリックすると、現在の数に順番に適用されます。</li>
+      <li>パーツはすべて使い切ったときの数がゴールと一致すればクリアです。</li>
+      <li>チェイン中のパーツをクリックすると、そのパーツより後ろをまとめて取り消せます。</li>
+      <li>問題は実際に解ける順番を作ってから出すので、必ず解けます。</li>
+      <li>「ヒント」は現在の並びから続けてゴールに届く、次に使うとよいパーツを1つ教えます。届かない並びなら、そう教えてくれます。</li>
+      <li>最少記録（手数）はパーツ数ごとにブラウザ内へ保存されます。</li>
+    </ul>
+  </section>
+
+  <footer class="site-footer">
+    <a href="../../">← パズル一覧に戻る</a>
+  </footer>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
