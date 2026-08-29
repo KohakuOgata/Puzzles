@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デジピック — Puzzles</title>
+<meta name="description" content="Starfield のロックピッキング「デジピック」と同じ仕組みのパズル。鍵を回してリングのくぼみに歯を合わせ、外側から順にリングを解除します。問題はランダム生成で、必ず解けます。">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🔓</text></svg>">
+</head>
+<body>
+<div class="wrap">
+  <header class="site-header">
+    <h1 class="site-title">デジピック</h1>
+    <a class="back-link" href="../../">← パズル一覧</a>
+  </header>
+
+  <p class="lede">
+    Starfield のロックピッキング「デジピック」と同じ仕組みのパズル。
+    鍵を回して歯をリングのくぼみにぴったり合わせ、外側のリングから順に解除していきます。
+  </p>
+
+  <div class="controls">
+    <div class="seg" id="level-seg" role="group" aria-label="難易度"></div>
+    <button class="btn primary" id="new-game" type="button">新しい問題</button>
+    <button class="btn" id="undo" type="button">1 つ戻す</button>
+    <button class="btn" id="hint" type="button">自動解除（ヒント）</button>
+  </div>
+
+  <div class="stats">
+    <div>
+      <span class="stat-label">残り鍵</span>
+      <span class="stat-value" id="keys-left">—</span>
+    </div>
+    <div>
+      <span class="stat-label">残りリング</span>
+      <span class="stat-value" id="rings-left">—</span>
+    </div>
+    <div>
+      <span class="stat-label">時間</span>
+      <span class="stat-value" id="time">00:00</span>
+    </div>
+    <div>
+      <span class="stat-label">最短記録</span>
+      <span class="stat-value" id="best">—</span>
+    </div>
+  </div>
+
+  <p class="message" id="message" role="status" aria-live="polite"></p>
+
+  <div class="dg-layout">
+    <div class="dg-lock-wrap">
+      <div class="dg-lock" id="lock"></div>
+      <div class="dg-dial" role="group" aria-label="鍵の操作">
+        <button class="btn dg-rot" id="rot-ccw" type="button" aria-label="左に回す">⟲</button>
+        <button class="btn primary" id="insert" type="button">差し込む</button>
+        <button class="btn dg-rot" id="rot-cw" type="button" aria-label="右に回す">⟳</button>
+      </div>
+      <p class="dg-tip">リングをドラッグしても回せます（← → キーでも回転）。</p>
+    </div>
+
+    <div class="dg-tray" id="tray" role="group" aria-label="手持ちの鍵"></div>
+  </div>
+
+  <section class="rules">
+    <h2>遊び方</h2>
+    <ul>
+      <li>リングには <strong>32 個</strong>のスロットが並び、暗くくぼんでいるところが「埋めるべき穴」です。手持ちの鍵は歯の並びが決まっていて、<strong>すべての歯がくぼみに入る向き</strong>にしたときだけ差し込めます。</li>
+      <li>鍵を選び、⟲ / ⟳・矢印キー・リングのドラッグで回して、<strong>差し込む</strong>で挿入します。歯が緑なら入る向き、赤なら入りません。</li>
+      <li>操作できるのは<strong>いちばん外側の未解除リング</strong>だけです。そのリングのくぼみが全部埋まると解除され、次のリングに進みます。</li>
+      <li>鍵は<strong>ちょうど必要な本数だけ</strong>配られます。違うリングや違う位置で使ってしまうと、あとで足りなくなって詰みます。詰んだら「1 つ戻す」で戻せます。</li>
+      <li>問題は各リングのくぼみを鍵で分割して作っているので、必ず解けます。「自動解除」を使うと次の 1 本を教えてくれますが、その回は記録に残りません。</li>
+    </ul>
+  </section>
+
+  <footer class="site-footer">
+    <a href="../../">← パズル一覧に戻る</a>
+  </footer>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

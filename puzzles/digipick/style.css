@@ -1,0 +1,198 @@
+/* デジピック専用スタイル */
+
+.dg-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 224px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* --- 錠前 ------------------------------------------------------------------ */
+
+.dg-lock-wrap {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.dg-lock {
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.dg-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  cursor: grab;
+}
+
+.dg-svg.grabbing { cursor: grabbing; }
+
+.dg-lock.shake { animation: dg-shake 0.28s; }
+
+@keyframes dg-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* リング本体 */
+.dg-ring-base {
+  fill: #2b3243;
+  stroke: #3d4661;
+  stroke-width: 1;
+}
+
+.dg-ring-base.active {
+  stroke: var(--accent);
+  stroke-width: 1.6;
+}
+
+.dg-ring-base.solved {
+  fill: #23392c;
+  stroke: #3f7a55;
+}
+
+/* くぼみ（埋めるべきスロット） */
+.dg-slot {
+  fill: #0a0c12;
+  stroke: #05070b;
+  stroke-width: 0.6;
+}
+
+.dg-slot.filled { stroke: rgba(0, 0, 0, 0.45); }
+
+/* 選択中の鍵のプレビュー */
+.dg-tooth.ok, .dg-spine.ok { fill: var(--ok); }
+.dg-tooth.ng, .dg-spine.ng { fill: #ff6b6b; }
+
+.dg-tooth {
+  stroke: rgba(0, 0, 0, 0.5);
+  stroke-width: 0.6;
+}
+
+/* 中心 */
+.dg-core {
+  fill: #161a24;
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.dg-core.cleared { stroke: var(--ok); }
+
+.dg-core-num { fill: var(--text); font-weight: 700; }
+.dg-core-num.cleared { fill: var(--ok); }
+.dg-core-label { fill: var(--text-dim); }
+
+/* --- ダイヤル操作 ---------------------------------------------------------- */
+
+.dg-dial {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.dg-rot {
+  font-size: 18px;
+  line-height: 1;
+  padding: 8px 16px;
+}
+
+.dg-tip {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* --- 手持ちの鍵 ------------------------------------------------------------ */
+
+.dg-tray {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 10px;
+  align-content: start;
+}
+
+.dg-key {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 6px 6px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.05s;
+}
+
+.dg-key:hover:not(:disabled) { background: var(--panel-hover); border-color: #46516b; }
+.dg-key:active:not(:disabled) { transform: translateY(1px); }
+
+.dg-key[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--panel-hover);
+  color: var(--text);
+  box-shadow: 0 0 0 1px var(--accent) inset;
+}
+
+.dg-key.hinted { border-color: var(--ok); box-shadow: 0 0 0 1px var(--ok) inset; }
+
+.dg-key.placed {
+  opacity: 0.45;
+  cursor: default;
+  border-style: dashed;
+}
+
+.dg-key svg {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.dg-key-guide {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 4;
+}
+
+.dg-key-label { line-height: 1.3; }
+
+@media (max-width: 720px) {
+  .dg-layout { grid-template-columns: 1fr; }
+  .dg-tray { grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); }
+  .dg-key svg { width: 48px; height: 48px; }
+}
+
+/* --- 遊び方 ---------------------------------------------------------------- */
+
+.rules {
+  margin-top: 32px;
+  padding: 16px 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.rules h2 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.rules ul { margin: 0; padding-left: 18px; }
+.rules strong { color: var(--text); }

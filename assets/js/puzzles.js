@@ -27,6 +27,14 @@ const PUZZLES = [
     status: "ready",
   },
   {
+    id: "digipick",
+    name: "デジピック",
+    icon: "🔓",
+    desc: "鍵を回して歯をリングのくぼみに合わせ、外側のリングから順に解除する。",
+    tags: ["空間認識", "1人用", "自動生成"],
+    status: "ready",
+  },
+  {
     id: "key-fit",
     name: "鍵はめパズル",
     icon: "🔑",
