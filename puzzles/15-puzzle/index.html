@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>15パズル — Puzzles</title>
+<meta name="description" content="数字タイルをスライドさせて順番に並べるパズル。盤面はランダム生成で、必ず解けます。">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🔢</text></svg>">
+</head>
+<body>
+<div class="wrap">
+  <header class="site-header">
+    <h1 class="site-title">15パズル</h1>
+    <a class="back-link" href="../../">← パズル一覧</a>
+  </header>
+
+  <p class="lede">空きマスにタイルをスライドさせて、数字を 1 から順番に並べればクリア。</p>
+
+  <div class="controls">
+    <div class="seg" id="size-seg" role="group" aria-label="盤面サイズ"></div>
+    <button class="btn primary" id="new-game" type="button">新しい問題</button>
+    <button class="btn" id="restart" type="button">やり直す</button>
+  </div>
+
+  <div class="stats">
+    <div>
+      <span class="stat-label">手数</span>
+      <span class="stat-value" id="moves">0</span>
+    </div>
+    <div>
+      <span class="stat-label">時間</span>
+      <span class="stat-value" id="time">00:00</span>
+    </div>
+    <div>
+      <span class="stat-label">最少記録</span>
+      <span class="stat-value" id="best">—</span>
+    </div>
+  </div>
+
+  <p class="message" id="message" role="status" aria-live="polite"></p>
+
+  <div class="board" id="board" role="grid" aria-label="15パズルの盤面"></div>
+
+  <section class="rules">
+    <h2>遊び方</h2>
+    <ul>
+      <li>空きマスと同じ行・列にあるタイルをクリック（タップ）すると、そこまで一気にスライドします。</li>
+      <li>矢印キーでも、空きマスをその方向へ 1 マスずつ動かせます。</li>
+      <li>タイルが左上から 1、2、3…の順に並び、空きマスが右下に来ればクリアです。</li>
+      <li>問題は「揃った状態からランダムにスライドさせた」盤面から作るので、必ず解けます。</li>
+      <li>最少記録は盤面サイズごとにブラウザ内へ保存されます。</li>
+    </ul>
+  </section>
+
+  <footer class="site-footer">
+    <a href="../../">← パズル一覧に戻る</a>
+  </footer>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

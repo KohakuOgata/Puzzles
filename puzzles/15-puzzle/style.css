@@ -1,0 +1,86 @@
+/* 15パズル専用スタイル */
+
+.board {
+  display: grid;
+  gap: 8px;
+  width: min(100%, 420px);
+  aspect-ratio: 1 / 1;
+  padding: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  touch-action: manipulation;
+}
+
+.cell {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #232a3a;
+  color: var(--text);
+  font-size: clamp(16px, 4.5vw, 26px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.12s ease, box-shadow 0.12s ease, transform 0.06s;
+}
+
+.cell:hover { background: #2b3346; }
+.cell:active { transform: scale(0.96); }
+
+.cell:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.cell.blank {
+  background: transparent;
+  border-style: dashed;
+  cursor: default;
+  box-shadow: none;
+}
+
+.cell.blank:hover { background: transparent; }
+.cell.blank:active { transform: none; }
+
+.cell.home {
+  background: var(--panel);
+  border-color: var(--ok);
+  color: var(--ok);
+}
+
+.cell.home:hover { background: var(--panel-hover); }
+
+/* クリア時の演出 */
+.board.cleared .cell:not(.blank) {
+  animation: cleared-flash 0.6s ease;
+}
+
+@keyframes cleared-flash {
+  0% { background: var(--accent); color: var(--accent-text); }
+  100% { background: #232a3a; color: var(--text); }
+}
+
+.rules {
+  margin-top: 32px;
+  padding: 16px 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.rules h2 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.rules ul { margin: 0; padding-left: 18px; }
