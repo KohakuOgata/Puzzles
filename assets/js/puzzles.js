@@ -42,6 +42,14 @@ const PUZZLES = [
     tags: ["空間認識", "1人用", "自動生成"],
     status: "ready",
   },
+  {
+    id: "15-puzzle",
+    name: "15パズル",
+    icon: "🔢",
+    desc: "空きマスにタイルをスライドさせて、数字を順番に並べるスライドパズル。",
+    tags: ["並べ替え", "1人用", "自動生成"],
+    status: "ready",
+  },
 ];
 
 /** 一覧を #puzzle-list に描画する。 */
