@@ -255,9 +255,9 @@
       opChip.type = "button";
       opChip.className = "chain-op " + opClass(p.op);
       opChip.textContent = pieceLabel(p);
-      if (isLast && !cleared) {
-        opChip.title = "クリックで取り消す";
-        opChip.addEventListener("click", removeLast);
+      if (!cleared) {
+        opChip.title = isLast ? "クリックで取り消す" : "クリックでここから後ろをまとめて取り消す";
+        opChip.addEventListener("click", () => removeFrom(idx));
       } else {
         opChip.disabled = true;
       }
@@ -312,13 +312,17 @@
     checkState();
   }
 
-  function removeLast() {
-    if (cleared || used.length === 0) return;
-    used.pop();
-    moves++;
+  function removeFrom(idx) {
+    if (cleared || idx < 0 || idx >= used.length) return;
+    moves += used.length - idx;
+    used = used.slice(0, idx);
     hintId = null;
     messageEl.textContent = "";
     paint();
+  }
+
+  function removeLast() {
+    removeFrom(used.length - 1);
   }
 
   function checkState() {
