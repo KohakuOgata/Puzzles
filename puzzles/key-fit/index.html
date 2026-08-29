@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>鍵はめパズル — Puzzles</title>
-<meta name="description" content="鍵ピース（テトロミノなどのブロック）を回転させて盤面に隙間なく敷き詰める、ロックピッキング風のはめ込みパズル。問題はランダム生成で、必ず解けます。">
+<meta name="description" content="鍵ピース（テトロミノなどのブロック）を回転させて盤面に隙間なく敷き詰める、はめ込みパズル。問題はランダム生成で、必ず解けます。">
 <link rel="stylesheet" href="../../assets/css/base.css">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🔑</text></svg>">
@@ -17,8 +17,8 @@
   </header>
 
   <p class="lede">
-    鍵ピース（テトロミノなどのブロック）を回転させて盤面にぴったりはめ込む、ロックピッキング風の敷き詰めパズル。
-    すべてのマスを埋めればロック解除です。
+    鍵ピース（テトロミノなどのブロック）を回転させて盤面にぴったりはめ込む敷き詰めパズル。
+    すべてのマスを埋めればクリアです。
   </p>
 
   <div class="controls">
@@ -51,7 +51,7 @@
 
   <div class="dp-layout">
     <div class="dp-board-wrap">
-      <div class="board dp-board" id="board" role="group" aria-label="ロック盤面"></div>
+      <div class="board dp-board" id="board" role="group" aria-label="盤面"></div>
     </div>
     <div class="dp-tray" id="tray" role="group" aria-label="鍵ピース"></div>
   </div>
@@ -61,8 +61,8 @@
     <ul>
       <li>下の「鍵」を 1 つクリックして選び、盤面のマスをクリックすると、そこにはめ込みます。ピース右上の <strong>⟳</strong> で回転できます。</li>
       <li>盤面の金色の枠が「はめ込むべきマス」です。壁（何もないマス）や他の鍵と重なる置き方はできません。</li>
-      <li>いちど盤面にはめた鍵は抜けません。すべてのマスが埋まればロック解除でクリアです。</li>
-      <li>残りの鍵で盤面を埋めきれなくなると「詰み」になります。「この試行をやめる」でトライを 1 つ消費してやり直せます。トライがなくなるとロックが壊れ、その問題は失敗です。</li>
+      <li>いちど盤面にはめた鍵は抜けません。すべてのマスが埋まればクリアです。</li>
+      <li>残りの鍵で盤面を埋めきれなくなると「詰み」になります。「この試行をやめる」でトライを 1 つ消費してやり直せます。トライがなくなると、その問題は失敗です。</li>
       <li>問題は鍵ピースを隙間なく敷き詰めて作ってからシャッフルしているので、必ず解けます。「ヒント」で次に置くべき鍵と場所が分かります。</li>
     </ul>
   </section>
