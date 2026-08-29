@@ -1,0 +1,160 @@
+/* けいさんチェイン専用スタイル */
+
+.target-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.value-box {
+  flex: 1 1 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 14px 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-width: 100px;
+}
+
+.value-box.current {
+  border-color: #46516b;
+}
+
+.value-box.current.match {
+  border-color: var(--ok);
+  box-shadow: 0 0 0 1px var(--ok);
+}
+
+.value-box.goal {
+  border-color: var(--accent-dim);
+}
+
+.value-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.value-num {
+  font-size: 24px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.target-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  font-size: 20px;
+  flex: 0 0 auto;
+}
+
+/* --- チェイン（使った順番） ---------------------------------------------- */
+
+.chain {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-height: 44px;
+  padding: 14px;
+  margin-bottom: 16px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.chain-value {
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+  padding: 4px 2px;
+}
+
+.chain.cleared .chain-value {
+  color: var(--ok);
+}
+
+/* --- パーツ（チェインの演算チップ / 選択プール共通） ---------------------- */
+
+.chain-op,
+.piece {
+  appearance: none;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 8px 14px;
+  cursor: pointer;
+  color: var(--text);
+  background: var(--panel);
+  transition: background 0.12s ease, transform 0.06s, box-shadow 0.12s ease;
+}
+
+.piece:hover:not(:disabled) { background: var(--panel-hover); }
+.piece:active:not(:disabled) { transform: scale(0.96); }
+
+.chain-op:disabled { cursor: default; opacity: 0.85; }
+.piece:disabled { cursor: default; opacity: 0.4; }
+
+.op-add { border-color: #3f6b4c; background: #1c2e21; }
+.op-sub { border-color: #6b3f3f; background: #2e1c1c; }
+.op-mul { border-color: #3f5a6b; background: #1c262e; }
+.op-div { border-color: #5a3f6b; background: #271c2e; }
+
+.piece.op-add:hover:not(:disabled) { background: #234030; }
+.piece.op-sub:hover:not(:disabled) { background: #402323; }
+.piece.op-mul:hover:not(:disabled) { background: #233440; }
+.piece.op-div:hover:not(:disabled) { background: #342340; }
+
+.pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px;
+  margin-bottom: 20px;
+  background: var(--panel);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  min-height: 44px;
+}
+
+/* ヒントで光らせるパーツ */
+.piece.hint {
+  border-color: var(--ok);
+  box-shadow: 0 0 0 2px rgba(90, 212, 138, 0.4);
+  animation: piece-hint-pulse 1s ease-in-out infinite;
+}
+
+@keyframes piece-hint-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.rules {
+  margin-top: 32px;
+  padding: 16px 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.rules h2 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.rules ul { margin: 0; padding-left: 18px; }
