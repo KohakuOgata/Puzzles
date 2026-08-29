@@ -50,6 +50,14 @@ const PUZZLES = [
     tags: ["並べ替え", "1人用", "自動生成"],
     status: "ready",
   },
+  {
+    id: "breach-protocol",
+    name: "ブリーチプロトコル",
+    icon: "🖥️",
+    desc: "Cyberpunk 2077 のハッキングと同じ仕組み。行と列を交互にたどってシーケンスを揃える。",
+    tags: ["論理", "記憶力", "1人用", "自動生成"],
+    status: "ready",
+  },
 ];
 
 /** 一覧を #puzzle-list に描画する。 */
